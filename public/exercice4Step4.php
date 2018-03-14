@@ -7,12 +7,15 @@ if ($_SERVER['REQUEST_METHOD'] == "GET"){
 
 // everything is OK, get film in DB and display info
 if ($id){
+    // I open the PDO to access DB
     try {
         $connection = new PDO('mysql:host=localhost;dbname=exercice_3','root');
     } catch (PDOException $e) {
     echo 'Database error : '. $e->getMessage(). '<br/>';
     }
 
+    
+    // I select just the right film => given ID
     $sql = "SELECT * FROM  movies WHERE id = :id";
     
     $statement = $connection->prepare($sql);
